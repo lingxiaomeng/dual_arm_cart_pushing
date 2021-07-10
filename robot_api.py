@@ -12,7 +12,7 @@ import actionlib
 class Robot_Api:
     def __init__(self, robot_name):
         try:
-            rospy.init_node('arm_control')
+            # rospy.init_node('arm_control')
             # Get node params
             self.robot_name = rospy.get_param('~robot_name', robot_name)
             action_address = self.robot_name+'_driver/pose_action/tool_pose'
@@ -55,17 +55,3 @@ class Robot_Api:
         self.client.send_goal(goal)
 
 
-if __name__ == "__main__":
-    left_arm = Robot_Api("left_arm")
-    right_arm = Robot_Api("right_arm")
-    pose, oriention = left_arm.get_pose()
-    # left_arm.homeRobot()
-    # right_arm.homeRobot()
-    # print(pose)
-
-    res = left_arm.send_pose((0.47722487688, -0.205575549603, 0.397170269489), (0.640116751194,
-                    0.33752951026, 0.428907394409, 0.54070597887))
-    res = right_arm.send_pose((0.47722487688, -0.205575549603, 0.397170269489), (0.640116751194,
-                    0.33752951026, 0.428907394409, 0.54070597887))
-    
-    # print(res) 
